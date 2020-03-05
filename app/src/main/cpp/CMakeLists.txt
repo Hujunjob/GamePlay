@@ -1,44 +1,30 @@
-# For more information about using CMake with Android Studio, read the
-# documentation: https://d.android.com/studio/projects/add-native-code.html
-
-# Sets the minimum version of CMake required to build the native library.
-
 cmake_minimum_required(VERSION 3.4.1)
 
-# Creates and names a library, sets it as either STATIC
-# or SHARED, and provides the relative paths to its source code.
-# You can define multiple libraries, and CMake builds them for you.
-# Gradle automatically packages shared libraries with your APK.
+project(GamePlay)
 
-add_library( # Sets the name of the library.
-             native-lib
+set(GAMEPLAY_VERSION 3.0.0)
+set(CMAKE_C_COMPILER_INIT g++)
 
-             # Sets the library as a shared library.
-             SHARED
+# debug
+message( "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}" )
+if ( "${CMAKE_BUILD_TYPE}" STREQUAL "DEBUG" )
+    add_definitions(-D_DEBUG)
+endif()
 
-             # Provides a relative path to your source file(s).
-             native-lib.cpp )
+# architecture
+if ( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+set(ARCH_DIR "x64")
+else()
+set(ARCH_DIR "x86")
+endif()
 
-# Searches for a specified prebuilt library and stores the path as a
-# variable. Because CMake includes system libraries in the search path by
-# default, you only need to specify the name of the public NDK library
-# you want to add. CMake verifies that the library exists before
-# completing its build.
+# gameplay library
+add_subdirectory(gameplay)
 
-find_library( # Sets the name of the path variable.
-              log-lib
+# gameplay samples
+add_subdirectory(samples)
 
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
-              log )
-
-# Specifies libraries CMake should link to your target library. You
-# can link multiple libraries, such as libraries you define in this
-# build script, prebuilt third-party libraries, or system libraries.
-
-target_link_libraries( # Specifies the target library.
-                       native-lib
-
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
+# gameplay encoder
+# A pre-compiled executable can be found in 'gameplay/bin'. Uncomment to build yourself.
+#add_subdirectory(tools/encoder)
+#add_subdirectory(tools/luagen)
