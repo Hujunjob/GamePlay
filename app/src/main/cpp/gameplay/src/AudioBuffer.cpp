@@ -1,6 +1,7 @@
 #include "Base.h"
 #include "AudioBuffer.h"
 #include "FileSystem.h"
+#include <AL/al.h>
 
 namespace gameplay
 {

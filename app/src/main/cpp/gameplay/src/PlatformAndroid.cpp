@@ -1812,7 +1812,7 @@ std::string Platform::displayFileDialog(size_t mode, const char* title, const ch
 extern "C"
 {
 
-JNIEXPORT void JNICALL Java_org_gameplay3d_GamePlayNativeActivity_gamepadEventConnectedImpl(JNIEnv* env, jclass clazz, jint deviceId, jint buttonCount, jint joystickCount, jint triggerCount, jstring deviceName)
+JNIEXPORT void JNICALL Java_com_hujun_gameplay_GamePlayNativeActivity_gamepadEventConnectedImpl(JNIEnv* env, jclass clazz, jint deviceId, jint buttonCount, jint joystickCount, jint triggerCount, jstring deviceName)
 {
     const char* name = env->GetStringUTFChars(deviceName, JNI_FALSE);
     
@@ -1821,12 +1821,12 @@ JNIEXPORT void JNICALL Java_org_gameplay3d_GamePlayNativeActivity_gamepadEventCo
     env->ReleaseStringUTFChars(deviceName, name);
 }
 
-JNIEXPORT void JNICALL Java_org_gameplay3d_GamePlayNativeActivity_gamepadEventDisconnectedImpl(JNIEnv* env, jclass clazz, jint deviceId)
+JNIEXPORT void JNICALL Java_com_hujun_gameplay_GamePlayNativeActivity_gamepadEventDisconnectedImpl(JNIEnv* env, jclass clazz, jint deviceId)
 {
 	gameplay::Platform::gamepadEventDisconnectedInternal(deviceId);
 }
 
-JNIEXPORT void JNICALL Java_org_gameplay3d_GamePlayNativeActivity_screenOrientationChanged(JNIEnv* env, jclass clazz, jint orientation)
+JNIEXPORT void JNICALL Java_com_hujun_gameplay_GamePlayNativeActivity_screenOrientationChanged(JNIEnv* env, jclass clazz, jint orientation)
 {
     __orientationAngle = orientation * 90;
 }

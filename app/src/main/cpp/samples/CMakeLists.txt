@@ -123,6 +123,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(GAMEPLAY_LIBRARIES
             stdc++
             gameplay
+            android
             gameplay-deps
             m
             dl
@@ -142,6 +143,7 @@ ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(GAMEPLAY_LIBRARIES
             stdc++
             gameplay
+            android
             gameplay-deps
             m
             GL
@@ -154,6 +156,21 @@ ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
             gobject-2.0
             )
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
+link_directories(${CMAKE_SOURCE_DIR}/external-deps/lib/android/armeabi-v7a)
+
+set(GAMEPLAY_LIBRARIES
+        stdc++
+        gameplay
+        gameplay-deps
+        GLESv3
+        OpenSLES
+        EGL
+        log
+        android
+        m
+        dl
+        )
 
 add_definitions(-std=c++11)
 

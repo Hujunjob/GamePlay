@@ -1,4 +1,4 @@
-package org.gameplay3d;
+package com.hujun.gameplay;
 
 import android.app.NativeActivity;
 import android.content.Context;
@@ -28,7 +28,7 @@ import android.view.OrientationEventListener;
 public class GamePlayNativeActivity extends NativeActivity {
     
     static {
-        System.loadLibrary("gameplay");
+        System.loadLibrary("sample-browser");
     }
 
     private class GamePlayInputDeviceListener
@@ -76,6 +76,7 @@ public class GamePlayNativeActivity extends NativeActivity {
         }
 
         orientationListener = new OrientationEventListener(this) {
+            @Override
             public void onOrientationChanged(int orientation) {
                 if (orientation != OrientationEventListener.ORIENTATION_UNKNOWN) {
                     WindowManager mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
@@ -134,8 +135,9 @@ public class GamePlayNativeActivity extends NativeActivity {
         InputDevice device = _gamepadDevices.get(deviceId);
         if (device == null) {
             device = InputDevice.getDevice(deviceId);
-            if (device == null)
+            if (device == null) {
                 return null;
+            }
             int sources = device.getSources();
             if (((sources & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD) || 
                 ((sources & InputDevice.SOURCE_JOYSTICK) == InputDevice.SOURCE_JOYSTICK)) {
