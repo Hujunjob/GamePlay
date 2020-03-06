@@ -180,7 +180,9 @@ void FormsSample::createSampleForm()
 void FormsSample::update(float elapsedTime)
 {
     float speedFactor = 0.001f * elapsedTime;
-
+    if(!_gamepad){
+        return;
+    }
     _gamepad->getJoystickValues(0, &_joysticks[0]);
     _gamepad->getJoystickValues(1, &_joysticks[1]);
 
@@ -241,6 +243,9 @@ void FormsSample::update(float elapsedTime)
 
 void FormsSample::render(float elapsedTime)
 {
+    if(!_gamepad){
+        return;
+    }
     // Clear the screen.
     clear(CLEAR_COLOR_DEPTH, Vector4(0, 0, 0, 1), 1.0f, 0);
 

@@ -72,6 +72,9 @@ void BillboardSample::finalize()
 
 void BillboardSample::update(float elapsedTime)
 {
+    if(!_gamepad){
+        return;
+    }
     float time = (float)elapsedTime / 1000.0f;
 
     if (_gamepad->isButtonDown(Gamepad::BUTTON_A))

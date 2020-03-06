@@ -336,9 +336,6 @@ void android_app_post_exec_cmd(struct android_app* android_app, int8_t cmd);
  */
 void app_dummy();
 
-void ANativeActivity_onCreate(ANativeActivity* activity,
-                              void* savedState, size_t savedStateSize);
-
 /**
  * This is the function that application code must implement, representing
  * the main entry to the app.

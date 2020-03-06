@@ -8,7 +8,6 @@ else (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 set(GAMEPLAY_SRC
-        src/android_native_app_glue.cpp
         src/android_native_app_glue.h
         src/AbsoluteLayout.cpp
         src/AbsoluteLayout.h
