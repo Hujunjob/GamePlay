@@ -1,6 +1,7 @@
 #ifndef INPUTSAMPLE_H_
 #define INPUTSAMPLE_H_
 
+#include <android/native_activity.h>
 #include "gameplay.h"
 #include "Sample.h"
 

@@ -1,6 +1,8 @@
 set(GAME_NAME sample-browser)
 
 set(GAME_SRC
+        src/android_native_app_glue.cpp
+        src/android_native_app_glue.h
         src/Audio3DSample.cpp
         src/Audio3DSample.h
         src/AudioSample.cpp

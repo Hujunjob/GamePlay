@@ -1,7 +1,9 @@
 package com.hujun.gameplay;
 
+import android.Manifest;
 import android.app.NativeActivity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.hardware.input.InputManager;
 import android.os.Build;
@@ -26,7 +28,11 @@ import android.view.OrientationEventListener;
  * android user-interface, life-cycle events for saving game state and custom plug-ins/extensions.
  */
 public class GamePlayNativeActivity extends NativeActivity {
-    
+    private String[] permissions = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
     static {
         System.loadLibrary("sample-browser");
     }
@@ -59,6 +65,7 @@ public class GamePlayNativeActivity extends NativeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        checkpermissions();
         _gamepadDevices = new SparseArray<InputDevice>();
         Log.v(TAG, "Build version: " + Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= 16) {
@@ -88,7 +95,19 @@ public class GamePlayNativeActivity extends NativeActivity {
             }
         };
     }
-    
+
+    private void checkpermissions() {
+        boolean need = false;
+        for (String permission : permissions) {
+            if (checkSelfPermission(permission)!= PackageManager.PERMISSION_GRANTED){
+                need = true;
+            }
+        }
+        if (need){
+            requestPermissions(permissions,1);
+        }
+    }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
