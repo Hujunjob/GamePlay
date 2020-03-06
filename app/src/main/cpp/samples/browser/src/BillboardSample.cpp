@@ -166,6 +166,7 @@ void BillboardSample::render(float elapsedTime)
 	}
 
     // draw the gamepad
+    if(_gamepad)
     _gamepad->draw();
 
     // draw the frame rate
