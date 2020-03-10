@@ -317,6 +317,24 @@ void LightSample::controlEvent(Control* control, EventType evt)
             changeTechnique = true;
         }
 		break;
+		case PRESS:
+			break;
+		case RELEASE:
+			break;
+		case CLICK:
+			break;
+		case TEXT_CHANGED:
+			break;
+		case MIDDLE_CLICK:
+			break;
+		case RIGHT_CLICK:
+			break;
+		case ACTIVATED:
+			break;
+		case FOCUS_GAINED:
+			break;
+		case FOCUS_LOST:
+			break;
 	}
 
 	if (_lighting && changeTechnique)

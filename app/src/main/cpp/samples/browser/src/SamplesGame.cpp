@@ -1,4 +1,5 @@
 #include "SamplesGame.h"
+#include "BillboardSample.h"
 
 using std::string;
 using std::pair;
@@ -244,7 +245,7 @@ void SamplesGame::gamepadEvent(Gamepad::GamepadEvent evt, Gamepad* gamepad, unsi
 void SamplesGame::runSample(void* func)
 {
     exitActiveSample();
-    
+//    func = BillboardSample;
     SampleGameCreatePtr p = (SampleGameCreatePtr)func;
 
     _activeSample = reinterpret_cast<Sample*>(p());

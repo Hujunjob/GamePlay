@@ -116,12 +116,12 @@ void Audio3DSample::update(float elapsedTime)
             _fpCamera.moveDown(time * UP_DOWN_SPEED);
         }
     }
-    else if (_gamepad->getJoystickCount() > 0)
+    else if (!_gamepad&&_gamepad->getJoystickCount() > 0)
     {
         _gamepad->getJoystickValues(0, &move);
         move.x = -move.x;
     }
-    if (_gamepad->getJoystickCount() > 1)
+    if (!_gamepad&&_gamepad->getJoystickCount() > 1)
     {
         Vector2 joy2;
         _gamepad->getJoystickValues(1, &joy2);
@@ -134,7 +134,9 @@ void Audio3DSample::update(float elapsedTime)
         _fpCamera.moveForward(move.y);
         _fpCamera.moveLeft(move.x);
     }
-
+    if(!_gamepad){
+        return;
+    }
     if (!_buttonPressed && _gamepad->isButtonDown(Gamepad::BUTTON_A))
     {
         addSound("footsteps.wav");

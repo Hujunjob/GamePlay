@@ -174,4 +174,5 @@ set(GAMEPLAY_LIBRARIES
 
 add_definitions(-std=c++11)
 
-add_subdirectory(browser)
+#add_subdirectory(browser)
+add_subdirectory(demo)
