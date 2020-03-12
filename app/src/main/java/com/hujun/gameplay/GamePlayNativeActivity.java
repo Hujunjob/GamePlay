@@ -18,6 +18,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.OrientationEventListener;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * GamePlay native activity extension for Android platform.
  * 
@@ -65,6 +68,7 @@ public class GamePlayNativeActivity extends NativeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        String s;
         checkpermissions();
         _gamepadDevices = new SparseArray<InputDevice>();
         Log.v(TAG, "Build version: " + Build.VERSION.SDK_INT);

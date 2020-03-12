@@ -39,6 +39,10 @@ set(GAME_SRC
         src/Sample.h
         src/SamplesGame.cpp
         src/SamplesGame.h
+        src/MyGame.h
+        src/MyGame.cpp
+        src/CameraTexture.cpp
+        src/CameraTexture.h
         src/SceneCreateSample.cpp
         src/SceneCreateSample.h
         src/SceneLoadSample.cpp

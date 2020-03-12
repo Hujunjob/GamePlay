@@ -6,10 +6,11 @@
 #define GAMEPLAY_MYGAME_H
 
 #include "gameplay.h"
+#include "Sample.h"
 
 using namespace gameplay;
 
-class MyGame : Game {
+class MyGame : public Game {
 public:
 
     /**
@@ -19,6 +20,7 @@ public:
 
 private:
     Font* _font;
+    Sample* _sample;
 
 protected:
 

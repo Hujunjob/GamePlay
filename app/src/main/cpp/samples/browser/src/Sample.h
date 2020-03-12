@@ -14,6 +14,7 @@ using namespace gameplay;
 class Sample
 {
     friend class SamplesGame;
+    friend class MyGame;
 
 public:
 

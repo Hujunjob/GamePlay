@@ -8,6 +8,7 @@ else (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 set(GAMEPLAY_SRC
+        ${GAMEPLAY_PLATFORM_SRC}
         src/android_native_app_glue.h
         src/AbsoluteLayout.cpp
         src/AbsoluteLayout.h
@@ -173,7 +174,7 @@ set(GAMEPLAY_SRC
         src/Platform.cpp
         src/PlatformAndroid.cpp
         src/PlatformWindows.cpp
-        ${GAMEPLAY_PLATFORM_SRC}
+
         src/Properties.cpp
         src/Properties.h
         src/Quaternion.cpp
@@ -527,22 +528,7 @@ set(GAMEPLAY_RES
         )
 
 set(GAMEPLAY_RES_SHADERS
-        res/shaders/colored.frag
-        res/shaders/colored.vert
-        res/shaders/font.frag
-        res/shaders/font.vert
-        res/shaders/form.frag
-        res/shaders/form.vert
-        res/shaders/lighting.frag
-        res/shaders/lighting.vert
-        res/shaders/skinning.vert
-        res/shaders/skinning-none.vert
-        res/shaders/sprite.frag
-        res/shaders/sprite.vert
-        res/shaders/terrain.frag
-        res/shaders/terrain.vert
-        res/shaders/textured.frag
-        res/shaders/textured.vert
+        res/shaders/*
         )
 
 set(GAMEPLAY_RES_SHADERS
