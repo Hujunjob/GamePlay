@@ -1,6 +1,8 @@
 set(GAME_NAME sample-browser)
 
 set(GAME_SRC
+        src/CameraSample.cpp
+        src/CameraSample.h
         src/android_native_app_glue.cpp
         src/android_native_app_glue.h
         src/Audio3DSample.cpp

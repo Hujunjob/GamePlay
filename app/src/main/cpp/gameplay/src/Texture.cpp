@@ -165,6 +165,8 @@ GLint Texture::getFormatInternal(Format format)
 {
     switch (format)
     {
+        case Texture::YUV420:
+            return GL_LUMINANCE_ALPHA;
         case Texture::RGB888:
         case Texture::RGB565:
             return GL_RGB;
@@ -189,6 +191,7 @@ GLenum Texture::getFormatTexel(Format format)
 {
     switch (format)
     {
+        case Texture::YUV420:
         case Texture::RGB888:
         case Texture::RGBA8888:
         case Texture::ALPHA:

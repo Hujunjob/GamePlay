@@ -5,6 +5,7 @@ import android.app.NativeActivity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Camera;
 import android.hardware.input.InputManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.OrientationEventListener;
 
+import com.hujun.gameplay.camera.CameraEngine;
+import com.hujun.gameplay.camera.CameraFactory;
+import com.hujun.gameplay.camera.ICameraEngine;
+import com.hujun.gameplay.camera.NewFrameListener;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,9 +41,11 @@ import java.util.List;
  */
 public class GamePlayNativeActivity extends NativeActivity {
     private String[] permissions = {
+            Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+    private ICameraEngine cameraEngine;
 
     static {
         System.loadLibrary("sample-browser");
@@ -109,8 +120,30 @@ public class GamePlayNativeActivity extends NativeActivity {
         }
         if (need){
             requestPermissions(permissions,1);
+        }else {
+            cameraEngine = CameraFactory.INSTANCE.createCameraEngine(CameraFactory.CameraType.CAMERA1,this);
+            cameraEngine.setOnNewFrameListener(frameListener);
+            cameraEngine.openCamera(false);
         }
     }
+
+    private CameraEngine.OnNewFrameListener frameListener = new ICameraEngine.OnNewFrameListener() {
+        @Override
+        public void onNewFrame(@NotNull byte[] data, int width, int height) {
+            Log.d(TAG, "onNewFrame: "+width);
+            onCameraFrame(data,width,height);
+        }
+
+        @Override
+        public void onBuffer(@NotNull ByteBuffer yBuffer, @NotNull ByteBuffer uBuffer, @NotNull ByteBuffer vBuffer, int width, int height) {
+            Log.d(TAG, "onBuffer: "+width);
+        }
+
+        @Override
+        public void onError(int error) {
+
+        }
+    };
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -133,6 +166,9 @@ public class GamePlayNativeActivity extends NativeActivity {
                 getGamepadDevice(ids[i]);
             }
         }
+        if (cameraEngine!=null){
+            cameraEngine.openCamera(false);
+        }
     }
     
     @Override
@@ -142,6 +178,9 @@ public class GamePlayNativeActivity extends NativeActivity {
             _inputManager.unregisterInputDeviceListener(_inputDeviceListener);
         }
         super.onPause();
+        if (cameraEngine!=null){
+            cameraEngine.closeCamera();
+        }
     }
     
     private void onGamepadConnected(int deviceId, String deviceName) {
@@ -177,6 +216,7 @@ public class GamePlayNativeActivity extends NativeActivity {
     private static native void gamepadEventConnectedImpl(int deviceId, int buttonCount, int joystickCount, int triggerCount, String deviceName);
     private static native void gamepadEventDisconnectedImpl(int deviceId);
     private static native void screenOrientationChanged(int orientation);
+    private static native void onCameraFrame(byte[] data, int width, int height);
     
     private InputManager _inputManager = null;
     private SparseArray<InputDevice> _gamepadDevices;

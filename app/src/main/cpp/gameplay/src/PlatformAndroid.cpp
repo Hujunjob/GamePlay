@@ -1831,6 +1831,7 @@ JNIEXPORT void JNICALL Java_com_hujun_gameplay_GamePlayNativeActivity_screenOrie
     __orientationAngle = orientation * 90;
 }
 
+
 }
 
 #endif

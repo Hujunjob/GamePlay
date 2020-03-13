@@ -7,6 +7,7 @@
 
 #include "gameplay.h"
 #include "Sample.h"
+#include "CameraSample.h"
 
 using namespace gameplay;
 
@@ -17,10 +18,11 @@ public:
      * Constructor.
      */
     MyGame();
+    CameraSample* _sample;
 
 private:
     Font* _font;
-    Sample* _sample;
+
 
 protected:
 

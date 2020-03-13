@@ -33,6 +33,7 @@ public:
         RGBA5551,
         ALPHA,
         DEPTH,
+        YUV420,
     };
 
     /**
